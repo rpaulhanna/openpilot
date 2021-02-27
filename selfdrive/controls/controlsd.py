@@ -505,6 +505,9 @@ class Controls:
     controlsState.forceDecel = bool(force_decel)
     controlsState.canErrorCounter = self.can_error_counter
 
+    if self.v_cruise_kph != 255:
+      controlsState.vCruise = controlsState.vCruise * 0.98
+
     if self.CP.lateralTuning.which() == 'pid':
       controlsState.lateralControlState.pidState = lac_log
     elif self.CP.lateralTuning.which() == 'lqr':
